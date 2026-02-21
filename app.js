@@ -63,3 +63,14 @@ app.patch('/products/:id', (req, res) => {
     
     res.json(product);
 });
+
+app.delete('/products/:id', (req, res) => {
+    const productIndex = products.findIndex(p => p.id == req.params.id);
+    
+    if (productIndex === -1) {
+        return res.status(404).json({ message: 'Товар не найден' });
+    }
+    
+    products.splice(productIndex, 1);
+    res.status(204).send(); 
+});
