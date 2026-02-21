@@ -17,3 +17,7 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Сервер запущен на http://localhost:${port}`);
 });
+
+app.get('/products', (req, res) => {
+    res.json(products);
+});
