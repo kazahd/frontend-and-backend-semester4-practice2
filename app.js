@@ -31,3 +31,20 @@ app.get('/products/:id', (req, res) => {
     
     res.json(product);
 });
+
+app.post('/products', (req, res) => {
+    const { name, price } = req.body;
+    
+    if (!name || !price) {
+        return res.status(400).json({ message: 'Имя и цена обязательны' });
+    }
+    
+    const newProduct = {
+        id: Date.now(),      
+        name,
+        price
+    };
+    
+    products.push(newProduct);
+    res.status(201).json(newProduct);
+});
